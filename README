@@ -1,4 +1,9 @@
 mplugins
 ---------
 
-sendbox for creating audio plugins in faust programming language.
+Sandbox for creating audio plugins in faust programming language.
+
+I am testing just jackqt build at the moment.
+
+You need faust, libjack-dev, libqt4-dev instaled on your system.
+
