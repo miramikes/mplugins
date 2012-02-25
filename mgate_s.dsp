@@ -53,9 +53,6 @@ mgate_s = bypass2(gbp,gate_stereo_d);
   vmeter_s_in      = v_in(hgroup("input dB meter", (vmeter_l,vmeter_r)));
   vmeter_s_out     = v_out(hgroup("output dB meter", (vmeter_l,vmeter_r)));
 
-//  v_in                     = hgroup("",vmeter_s_in);
-//  v_out                  = hgroup("",vmeter_s_out);
-
 process = 
 
   vmeter_s_in: 
