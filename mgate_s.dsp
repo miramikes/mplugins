@@ -4,9 +4,9 @@ declare author 		"mira";
 declare license 	"GPL-2";
 declare copyright 	"(c)mira 2012";
 
-//-----------------------------------------------
+//---------------------------------------------------------------------------------------------
 // 			stereo gate
-//-----------------------------------------------
+//---------------------------------------------------------------------------------------------
 
 import("oscillator.lib");
 import("effect.lib");
@@ -45,18 +45,17 @@ mgate_s = bypass2(gbp,gate_stereo_d);
      100, 0, 1000, 1)) : *(0.001) : max(1/SR);
 
 
+//---------------------------------------------------------------------------------------------
+//                              vumeter
+//---------------------------------------------------------------------------------------------
+
+
   vmeter_l(x)     = hgroup("L" , attach(x, envelop(x) : vbargraph("[2][unit:dB]", -70, +5)));
   vmeter_r(x)     = hgroup("R" , attach(x, envelop(x) : vbargraph("[2][unit:dB]", -70, +5)));
 
   envelop         = abs : max ~ -(1.0/SR) : max(db2linear(-70)) : linear2db;
 
-  vmeter_s_in      = v_in(hgroup("input dB meter", (vmeter_l,vmeter_r)));
-  vmeter_s_out     = v_out(hgroup("output dB meter", (vmeter_l,vmeter_r)));
+  vmeter_s_in      = v_in(hgroup("input dB", (vmeter_l,vmeter_r)));
+  vmeter_s_out     = v_out(hgroup("output dB", (vmeter_l,vmeter_r)));
 
-process = 
-
-  vmeter_s_in: 
-  mgate_s : 
-  vmeter_s_out:
-
-    _,_;
+process = vmeter_s_in : mgate_s : vmeter_s_out ;
